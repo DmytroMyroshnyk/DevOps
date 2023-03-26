@@ -28,7 +28,7 @@ jobs:
       run: npm run lint
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag dmytromyroshnyk/my-node-app:latest
+      run: docker build . --file Dockerfile --tag dmytromyroshnyk/my-node-app
       if: success()
       
     - name: Push Docker Image
@@ -42,7 +42,7 @@ jobs:
       
     - name: Pull & Run
       run: | 
-        docker pull ${{ secrets.DOCKER_USERNAME }}/my-node-app:latest
+        docker pull ${{ secrets.DOCKER_USERNAME }}/my-node-app
         docker run -p 80:80 --cpus="0.5" --memory="512m" -d dmytromyroshnyk/my-node-app
         sleep 5
         curl -i localhost:80
